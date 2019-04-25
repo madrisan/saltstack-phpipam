@@ -26,7 +26,7 @@ import requests
 
 # Import Salt libs
 import salt.config
-from salt.exceptions import CommandExecutionError
+import salt.exceptions
 
 log = logging.getLogger(__name__)
 

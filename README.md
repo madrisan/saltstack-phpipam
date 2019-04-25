@@ -22,31 +22,31 @@ Where `url` is the URL of the *phpipam* server and `auth.user` and `auth.passwor
 
 This Python module should be saved as `salt/_modules/phpipam.py`.
 
-### API documentation
+## API documentation
 
-https://phpipam.net/api/api_documentation/
+URL: <https://phpipam.net/api/api_documentation/>
 
-### Implemented Methods
+## Implemented Methods
 
-#### phpimap.get
+### phpimap.get
 
 Query a *phpipam* server to get the IP address(es) associated to a *hostname*.
 
     salt '*' phpipam.get HOSTNAME
 
-#### phpimap.get_tags
+### phpimap.get_tags
 
 Query a *phpipam* server to get the list of all tags.
 
     salt '*' phpipam.get_tags
 
-#### get_tag_id
+### get_tag_id
 
 Query a *phpipam* server to get the tag ID that corresponds to a given *tag*.
 
     salt '*' phpipam.get_tag_id Offline
 
-#### get_addrs_by_tag
+### get_addrs_by_tag
 
 Query a *phpipam* server to get the IP addreses that corresponds to a given *tag*.
 The IP addreses of the hosts tagged as gateway can be expluded by setting *exclude_gateway* as *True*.
