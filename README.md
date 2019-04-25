@@ -1,5 +1,6 @@
 # SaltStack Extension Module for {php}IPAM
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/fcd8aa3c6a034c519ea795c892c5424c)](https://www.codacy.com/app/madrisan/saltstack-phpipam?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=madrisan/saltstack-phpipam&amp;utm_campaign=Badge_Grade)
 [![License](https://img.shields.io/badge/License-Apache--2.0-blue.svg)](https://spdx.org/licenses/Apache-2.0.html)
 
 ![](images/phpipam_logo.png?raw=true)
