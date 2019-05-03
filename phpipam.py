@@ -27,6 +27,7 @@ import requests
 # Import Salt libs
 import salt.config
 import salt.exceptions
+import salt.utils.network
 
 log = logging.getLogger(__name__)
 
@@ -124,12 +125,15 @@ class Api(object):
 def get(key):
     '''
     Query a {php}IPAM server to get the IP address(es) associated to a hostname.
+    An optional CIDR can be set. In this case only the addresses that belong to
+    this network will be returned.
 
     CLI Example:
 
     .. code-block:: bash
 
             salt '*' phpipam.get HOSTNAME
+            salt '*' phpipam.get HOSTNAME 10.0.20.0/24
     '''
     api = Api()
     resource = ('addresses/search_hostname_partial/{0}'
@@ -141,6 +145,7 @@ def get(key):
         # The hostname has not been found in {php}IPAM
         return ret
 
+    match = 0
     for entry in data:
         ipaddr   = entry.get('ip', None)
         hostname = entry.get('hostname', None)
@@ -154,12 +159,15 @@ def get(key):
                 subnet.get('calculation', {}).get('Subnet netmask'))
             subnet_description = subnet.get('description')
 
-            ret[str(data.index(entry))] = {
-                'ipv4': ipaddr,
-                'netmask': subnet_netmask,
-                'description': subnet_description,
-                'subnet_id': subnetId
-            }
+            valid = salt.utils.network.in_subnet(cidr, ipaddr) if cidr else True
+            if valid:
+                ret[str(match)] = {
+                    'ipv4': ipaddr,
+                    'netmask': subnet_netmask,
+                    'description': subnet_description,
+                    'subnet_id': subnetId
+                }
+                match += 1
 
     return ret
 

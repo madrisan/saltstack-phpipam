@@ -31,8 +31,10 @@ URL: <https://phpipam.net/api/api_documentation/>
 ### phpimap.get
 
 Query a *phpipam* server to get the IP address(es) associated to a *hostname*.
+An optional CIDR can be set. In this case only the address(es) that belong to this network will be returned.
 
     salt '*' phpipam.get HOSTNAME
+    salt '*' phpipam.get HOSTNAME 10.0.20.0/24
 
 ### phpimap.get_tags
 
